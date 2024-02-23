@@ -1,41 +1,18 @@
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-#include <DHT.h>
+To work properly when you are new for this project just download the driver ch340 from google and your uno will start to work.
+Just download Arduino 1.8.19 from chrome and  install it.
+Then connect all the parts with wires with the uno as followed and connect to the device. Then upload the code and the device will work properly . I recommend you to use uno smd. 
 
-#define DHTPIN 2  // Pin connected to the DHT11 sensor
-#define DHTTYPE DHT11  // DHT11 sensor type
-#define LCD_ADDR 0x27  // I2C address of the LCD
+WIRE PINOUT:
 
-DHT dht(DHTPIN, DHTTYPE);
-LiquidCrystal_I2C lcd(LCD_ADDR, 16, 2); // Change 16, 2 to your LCD dimensions
+DHT11:
+VCC -> 5V
+GND -> GND
+DATA -> Digital Pin 2
 
-void setup() {
-  Serial.begin(9600);
-  dht.begin();
-  lcd.init();
-  lcd.backlight();
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Temp: ");
-  lcd.setCursor(0, 1);
-  lcd.print("Humidity: ");
-}
+I2C LCD:
+SDA -> A4
+SCL -> A5
+VCC -> 5V
+GND -> GND
 
-void loop() {
-  float temperature = dht.readTemperature(); // Read temperature value
-  float humidity = dht.readHumidity(); // Read humidity value
-
-  if (isnan(temperature) || isnan(humidity)) { // Check if any reading failed
-    Serial.println("Failed to read from DHT sensor!");
-    return;
-  }
-
-  lcd.setCursor(6, 0);
-  lcd.print(temperature);
-  lcd.print(" C");
-
-  lcd.setCursor(9, 1);
-  lcd.print(humidity);
-  lcd.print(" %");
-
-  delay(0); // Delay between readings
+THANK YOU,AND A  VERY GOODLUCK WITH THE PROJECT!
